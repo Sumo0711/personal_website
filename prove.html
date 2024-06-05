@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相關證明</title>
+    <link rel="website icon" type="image/png" href="img/sumo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel img {
+            width: 100%;
+            height: 400px; /* 固定高度 */
+            flex-shrink: 0;
+            object-fit: contain; /* 保持圖片比例，必要時縮小 */
+        }
+        .dots {
+            text-align: center;
+            padding: 10px;
+        }
+        .dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dots .active {
+            background-color: #717171;
+        }
+        .caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.25rem;
+            color: #d4d4d4;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-mono">
+    <header class="p-6 flex justify-between items-center">
+        <h1 class="text-4xl">相關證明</h1>
+        <nav class="mt-4 flex space-x-4">
+            <a href="index.html" class="text-blue-400 hover:text-blue-600">首頁</a>
+            <a href="projects.html" class="text-blue-400 hover:text-blue-600">作品</a>
+        </nav>
+    </header>
+    <main class="p-6">
+        <section class="mt-8">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <img src="img/高中同等學歷.jpg" alt="高中同等學歷">
+                    <img src="img/RHCE.jpg" alt="RHCE">
+                    <img src="img/RHCSA.jpg" alt="RHCSA">
+                    <img src="img/CCNA.jpg" alt="CCNA">
+                    <img src="img/職訓局結訓證書.jpg" alt="職訓局結訓證書">
+                    <img src="img/職訓局成績(第一).jpg" alt="職訓局成績">
+                </div>
+            </div>
+            <div class="caption" id="caption">高中同等學歷</div>
+            <div class="dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span> <!-- 新加的點點 -->
+            </div>
+        </section>
+    </main>
+    <footer class="p-6 text-center">
+        &copy; 2024 蘇莫。保留所有權利。
+    </footer>
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-inner img');
+        const dots = document.querySelectorAll('.dot');
+        const caption = document.getElementById('caption');
+
+        const captions = ["高中同等學歷", "RHCE", "RHCSA", "CCNA", "職訓局結訓證書", "職訓局成績(第一)"];
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                index = 0;
+            }
+            if (index < 0) {
+                index = slides.length - 1;
+            }
+            document.querySelector('.carousel-inner').style.transform = `translateX(${-index * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            caption.innerText = captions[index];
+            currentIndex = index;
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        setInterval(nextSlide, 5000); // 每5秒自動切換圖片
+    </script>
+</body>
+</html>
