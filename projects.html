@@ -3,34 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>項目展示 - [你的名字]</title>
+    <title>作品</title>
+    <link rel="website icon" type="image/png" href="img/sumo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
+        .header-icons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-bottom: 10px;
+            margin-top: -30px;
+        }
+        .hover-zoom img {
+            transition: transform 0.3s ease;
+        }
+        .hover-zoom:hover img {
+            transform: scale(1.05);
+        }
+        .projects-container {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: flex-start; 
+            gap: 10px; 
+        }
+        .project {
+            flex: 1 1 calc(50% - 10px);
+            max-width: calc(50% - 10px);
+            box-sizing: border-box;
+            margin: 0; 
+            text-align: center; 
+        }
+        .project img {
+            width: 500px; 
+            height: 300px; 
+            object-fit: cover;
+            margin-top: 20px; 
+        }
+        @media (max-width: 640px) {
+            .project {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .project img {
+                width: 100%; 
+                height: auto; 
+            }
+        }
+        footer {
+            padding: 1rem;
+            text-align: center;
+            position: absolute; 
+            bottom: 0; 
+            width: 100%; 
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white font-mono">
-    <header class="p-6">
-        <h1 class="text-4xl">項目展示</h1>
-        <nav class="mt-4">
+    <header class="p-6 flex justify-between items-center">
+        <h1 class="text-4xl">作品</h1>
+        <nav class="mt-4 flex space-x-4">
             <a href="index.html" class="text-blue-400 hover:text-blue-600">首頁</a>
-            <a href="about.html" class="ml-4 text-blue-400 hover:text-blue-600">關於我</a>
-            <a href="contact.html" class="ml-4 text-blue-400 hover:text-blue-600">聯繫我</a>
+            <a href="prove.html" class="text-blue-400 hover:text-blue-600">相關證明</a>
         </nav>
     </header>
     <main class="p-6">
-        <section class="mb-8">
-            <h2 class="text-2xl mb-4">項目一</h2>
-            <p>[介紹項目一的詳細描述]</p>
-            <pre class="bg-gray-800 p-4 rounded"><code class="language-js">console.log('Hello, World!');</code></pre>
-        </section>
-        <section class="mb-8">
-            <h2 class="text-2xl mb-4">項目二</h2>
-            <p>[介紹項目二的詳細描述]</p>
-            <pre class="bg-gray-800 p-4 rounded"><code class="language-python">print("Hello, World!")</code></pre>
-        </section>
-        <!-- 添加更多項目 -->
+        <div class="header-icons">
+            <a href="https://github.com/Sumo0711" target="_blank">
+                <img src="img/github-icon.png" alt="GitHub" class="icon">
+            </a>
+            <a href="https://hackmd.io/@sumo0711" target="_blank">
+                <img src="img/HackMD-icon.png" alt="HackMD" class="icon">
+            </a>
+            <a href="https://www.youtube.com/@wellwolf0711" target="_blank">
+                <img src="img/youtube-icon.png" alt="YouTube" class="icon">
+            </a>
+        </div>
+        <div class="projects-container mb-8">
+            <section class="project hover-zoom flex flex-col items-center">
+                <a href="https://issuu.com/dinosaursumo/docs/_2022_" target="_blank">
+                    <img src="img/Portfolio.png" alt="Portfolio" class="mb-4 rounded">
+                </a>
+                <h3 class="text-2xl mb-4">作品集</h3>
+            </section>
+            <section class="project hover-zoom flex flex-col items-center">
+                <a href="https://github.com/Sumo0711/old-master" target="_blank">
+                    <img src="img/shopping_cart.png" alt="shopping_cart" class="mb-4 rounded">
+                </a>
+                <h3 class="text-2xl mb-4">購物車實作</h3>
+            </section>
+        </div>
     </main>
     <footer class="p-6 text-center">
-        &copy; 2024 [你的名字]。保留所有權利。
+        &copy; 2024 蘇莫。保留所有權利。
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-javascript.min.js"></script>
