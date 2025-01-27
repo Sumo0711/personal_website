@@ -7,6 +7,57 @@
     <link rel="website icon" type="image/png" href="img/sumo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1f2937, #3c4450, #1f2937);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-bottom: 10px;
+            margin-top: -30px;
+        }
+
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        a:hover {
+            color: #60a5fa;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white font-mono">
     <header class="p-6 flex justify-between items-center">
@@ -17,10 +68,22 @@
         </nav>
     </header>
     <main class="p-6">
+        <div class="header-icons">
+            <a href="https://github.com/Sumo0711" target="_blank">
+                <img src="img/github-icon.png" alt="GitHub" class="icon">
+            </a>
+            <a href="https://hackmd.io/@sumo0711" target="_blank">
+                <img src="img/HackMD-icon.png" alt="HackMD" class="icon">
+            </a>
+            <a href="https://www.youtube.com/@wellwolf0711" target="_blank">
+                <img src="img/youtube-icon.png" alt="YouTube" class="icon">
+            </a>
+        </div>
+
         <!-- 照片 -->
         <section class="text-center mt-8">
             <img src="img/sumo.png" alt="自拍照" class="rounded-full w-32 h-32 mx-auto">
-            <h2 class="text-2xl mt-4">蘇莫 SUMO</h2>
+            <h2 class="text-2xl mt-4">蘇莫 SUMO 22y</h2>
             <h2><span id="typed"></span></h2>
         </section>
 
@@ -29,23 +92,22 @@
             <h2 class="text-3xl mb-4">自我介紹</h2>
             <ul class="list-disc list-inside">
                 <li class="mb-6">
-                    <span class="text-xl block">ESFP-P</span>
+                    <span class="text-xl block">出生年月日</span>
+                    <span class="ml-4 block">2002-07-11</span>
                 </li>
-            <ul class="list-disc list-inside">
                 <li class="mb-6">
                     <span class="text-xl block">個性</span>
                     <span class="ml-4 block">慢熟、穩重、成熟、獨立、自律</span>
                 </li>
-            <ul class="list-disc list-inside">
                 <li class="mb-6">
                     <span class="text-xl block">特質</span>
                     <span class="ml-4 block">領導性、責任心、自主學習</span>
                 </li>
-            <ul class="list-disc list-inside">
                 <li class="mb-6">
                     <span class="text-xl block">興趣</span>
                     <span class="ml-4 block">旅行、籃球、自行車、獨木舟、溯溪</span>
                 </li>
+            </ul>
         </section>
 
         <!-- 學歷 -->
@@ -66,44 +128,47 @@
         <!-- 經歷 -->
         <section class="mt-8">
             <h2 class="text-3xl mb-4">經歷</h2>
-            <li class="mb-6">
-                <span class="text-xl block">中華民國國軍</span>
-                <span class="ml-4 block">陸軍機步二六九旅 - 2022/09~2023/04</span>
-            </li>
-            <li class="mb-6">
-                <span class="text-xl block">勞動部勞動力發展署桃竹苗分署</span>
-                <span class="ml-4 block">雲端網管與資安班 - 2021/10~2022/04</span>
-            </li>
-            </li>
-            <li class="mb-6">
-                <span class="text-xl block">其他</span>
-                <span class="ml-4 block">大墩山農業發協會（非營利組織）、加油站、咖啡廳、麥當勞、台灣雲豹自行車組裝廠</span>
-            </li>
+            <ul class="list-disc list-inside">
+                <li class="mb-6">
+                    <span class="text-xl block">中華民國國軍</span>
+                    <span class="ml-4 block">陸軍機步二六九旅 - 2022/09~2023/04</span>
+                </li>
+                <li class="mb-6">
+                    <span class="text-xl block">勞動部勞動力發展署桃竹苗分署</span>
+                    <span class="ml-4 block">雲端網管與資安班 - 2021/10~2022/04</span>
+                </li>
+                <li class="mb-6">
+                    <span class="text-xl block">其他</span>
+                    <span class="ml-4 block">大墩山農業發協會（非營利組織）、加油站、咖啡廳、麥當勞、台灣雲豹自行車組裝廠</span>
+                </li>
+            </ul>
         </section>
 
         <!-- 技能 -->
         <section class="mt-8">
             <h2 class="text-3xl mb-4">技能</h2>
-            <li class="mb-6">
-                <span class="text-xl block">程式語言</span>
-                <span class="ml-4 block">C++, Python, HTML, PHP, MySQL</span>
-            </li>
-            <li class="mb-6">
-                <span class="text-xl block">作業系統</span>
-                <span class="ml-4 block">MacOS, Windows, Linux</span>
-            </li>
-            <li class="mb-6">
-                <span class="text-xl block">開發工具</span>
-                <span class="ml-4 block">VSCode, Git, Unity</span>
-            </li>
-            <li class="mb-6">
-                <span class="text-xl block">多媒體工具</span>
-                <span class="ml-4 block">Photoshop, Illustrator, Premiere</span>
-            </li>
-            <li class="mb-6">
-                <span class="text-xl block">其他</span>
-                <span class="ml-4 block">Cisco,VMware</span>
-            </li>
+            <ul class="list-disc list-inside">
+                <li class="mb-6">
+                    <span class="text-xl block">程式語言</span>
+                    <span class="ml-4 block">C++, Python, HTML, PHP, MySQL</span>
+                </li>
+                <li class="mb-6">
+                    <span class="text-xl block">作業系統</span>
+                    <span class="ml-4 block">MacOS, Windows, Linux</span>
+                </li>
+                <li class="mb-6">
+                    <span class="text-xl block">開發工具</span>
+                    <span class="ml-4 block">VSCode, Git, Unity</span>
+                </li>
+                <li class="mb-6">
+                    <span class="text-xl block">多媒體工具</span>
+                    <span class="ml-4 block">Photoshop, Illustrator, Premiere</span>
+                </li>
+                <li class="mb-6">
+                    <span class="text-xl block">其他</span>
+                    <span class="ml-4 block">Cisco,VMware</span>
+                </li>
+            </ul>
         </section>
 
         <!-- 證照 -->
@@ -142,6 +207,20 @@
             backSpeed: 25,
             loop: true
         });
+
+        const sections = document.querySelectorAll('section');
+
+        const revealOnScroll = () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            sections.forEach(section => {
+                if (section.offsetTop < scrollPos) {
+                    section.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
     </script>
 </body>
 </html>

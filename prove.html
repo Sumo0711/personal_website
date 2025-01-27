@@ -8,6 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <style>
+        body {
+            background: linear-gradient(135deg, #1f2937, #3c4450, #1f2937);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .icon {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-bottom: 10px;
+            margin-top: -30px;
+        }
         .carousel {
             position: relative;
             width: 100%;
@@ -59,62 +87,78 @@
         </nav>
     </header>
     <main class="p-6">
+        <div class="header-icons">
+            <a href="https://github.com/Sumo0711" target="_blank">
+                <img src="img/github-icon.png" alt="GitHub" class="icon">
+            </a>
+            <a href="https://hackmd.io/@sumo0711" target="_blank">
+                <img src="img/HackMD-icon.png" alt="HackMD" class="icon">
+            </a>
+            <a href="https://www.youtube.com/@wellwolf0711" target="_blank">
+                <img src="img/youtube-icon.png" alt="YouTube" class="icon">
+            </a>
+        </div>
         <section class="mt-8">
             <div class="carousel">
-                <div class="carousel-inner">
-                    <img src="img/高中同等學歷.jpg" alt="高中同等學歷">
-                    <img src="img/RHCE.jpg" alt="RHCE">
-                    <img src="img/RHCSA.jpg" alt="RHCSA">
-                    <img src="img/CCNA.jpg" alt="CCNA">
-                    <img src="img/職訓局結訓證書.jpg" alt="職訓局結訓證書">
-                    <img src="img/職訓局成績(第一).jpg" alt="職訓局成績">
-                </div>
+                <div class="carousel-inner" id="carousel-inner"></div>
             </div>
             <div class="caption" id="caption">高中同等學歷</div>
-            <div class="dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span> <!-- 新加的點點 -->
-            </div>
+            <div class="dots" id="dots"></div>
         </section>
     </main>
     <footer class="p-6 text-center">
         &copy; 2024 蘇莫。保留所有權利。
     </footer>
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.carousel-inner img');
-        const dots = document.querySelectorAll('.dot');
+        const data = [
+            { src: "img/高中同等學歷.jpg", caption: "高中同等學歷" },
+            { src: "img/RHCE.jpg", caption: "RHCE" },
+            { src: "img/RHCSA.jpg", caption: "RHCSA" },
+            { src: "img/CCNA.jpg", caption: "CCNA" },
+            { src: "img/職訓局結訓證書.jpg", caption: "職訓局結訓證書" },
+            { src: "img/職訓局成績(第一).jpg", caption: "職訓局成績" }
+        ];
+
+        const carouselInner = document.getElementById('carousel-inner');
+        const dotsContainer = document.getElementById('dots');
         const caption = document.getElementById('caption');
+        let currentIndex = 0;
 
-        const captions = ["高中同等學歷", "RHCE", "RHCSA", "CCNA", "職訓局結訓證書", "職訓局成績"];
+        function renderCarousel() {
+            data.forEach((item, index) => {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.caption;
+                carouselInner.appendChild(img);
 
-        function showSlide(index) {
-            if (index >= slides.length) {
-                index = 0;
-            }
-            if (index < 0) {
-                index = slides.length - 1;
-            }
-            document.querySelector('.carousel-inner').style.transform = `translateX(${-index * 100}%)`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            caption.innerText = captions[index];
-            currentIndex = index;
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                dot.onclick = () => currentSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            carouselInner.style.transform = `translateX(${-currentIndex * 100}%)`;
+            dotsContainer.childNodes.forEach((dot, index) => {
+                dot.className = index === currentIndex ? 'dot active' : 'dot';
+            });
+            caption.textContent = data[currentIndex].caption;
         }
 
         function nextSlide() {
-            showSlide(currentIndex + 1);
+            currentIndex = (currentIndex + 1) % data.length;
+            updateCarousel();
         }
 
         function currentSlide(index) {
-            showSlide(index);
+            currentIndex = index;
+            updateCarousel();
         }
 
-        setInterval(nextSlide, 5000); // 每5秒自動切換圖片
+        renderCarousel();
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
