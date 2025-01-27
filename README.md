@@ -1,4 +1,4 @@
-https://sumo0711.github.io/personal_website/  
+https://sumo0711.top   
 
 ## 更新網站指令
 ### 添加所有更改
