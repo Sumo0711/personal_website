@@ -167,8 +167,12 @@
         let isTransitioning = false;
 
         function renderCarousel() {
-            const firstClone = data[0];
-            const lastClone = data[data.length - 1];
+            carouselInner.innerHTML = ''; // 清空內部
+            dotsContainer.innerHTML = ''; // 清空點選按鈕
+
+            // 克隆最後一張和第一張
+            const lastClone = { ...data[data.length - 1] };
+            const firstClone = { ...data[0] };
 
             const lastImg = document.createElement('img');
             lastImg.src = lastClone.src;
@@ -197,12 +201,10 @@
         }
 
         function updateCarousel() {
-            if (!isTransitioning) {
-                dotsContainer.childNodes.forEach((dot, index) => {
-                    dot.className = index === currentIndex ? 'dot active' : 'dot';
-                });
-                caption.textContent = data[currentIndex].caption;
-            }
+            dotsContainer.childNodes.forEach((dot, index) => {
+                dot.className = index === currentIndex ? 'dot active' : 'dot';
+            });
+            caption.textContent = data[currentIndex].caption;
         }
 
         function nextSlide() {
@@ -248,19 +250,6 @@
             carouselInner.style.transform = `translateX(${-(currentIndex + 1) * 100}%)`;
             updateCarousel();
         }
-
-        function handleTouchStart(e) {
-            startX = e.touches[0].clientX;
-        }
-
-        function handleTouchEnd(e) {
-            const endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) nextSlide();
-            if (endX - startX > 50) prevSlide();
-        }
-
-        carouselInner.addEventListener('touchstart', handleTouchStart);
-        carouselInner.addEventListener('touchend', handleTouchEnd);
 
         renderCarousel();
     </script>
