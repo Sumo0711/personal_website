@@ -71,14 +71,31 @@
             border-radius: 15px;
         }
         .card-front {
-            background-image: url('business-card-1.png');
+            background-image: url('img/business-card-1.png');
             background-size: cover;
         }
         .card-back {
-            background-image: url('business-card-2.png');
+            background-image: url('img/business-card-2.png');
             background-size: cover;
             transform: rotateY(180deg);
         }
+        @keyframes cardShake {
+            0%, 100% {
+            transform: rotate(0deg);
+            }
+            25% {
+            transform: rotate(2deg);
+            }
+            50% {
+            transform: rotate(-2deg);
+            }
+            75% {
+            transform: rotate(1deg);
+            }
+        }
+        .card.hover-effect:hover {
+            animation: cardShake 0.5s ease;
+    }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-mono">
@@ -212,7 +229,6 @@
                     <div class="card-face card-back"></div>
                 </div>
             </div>
-            <li>點擊翻轉</li>
         </section>
     </main>
     <footer class="p-6 text-center">
@@ -242,9 +258,34 @@
         revealOnScroll();
 
         const card = document.getElementById('card');
+        let isAnimating = false;
 
         card.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
             card.classList.toggle('is-flipped');
+        });
+
+        card.addEventListener('transitionend', (event) => {
+            if (event.propertyName === 'transform') {
+                isAnimating = false;
+            }
+        });
+
+        card.addEventListener('mouseenter', () => {
+            if (!isAnimating && !card.classList.contains('is-flipped')) {
+                card.classList.add('hover-effect');
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('hover-effect');
+        });
+
+        card.addEventListener('transitionend', () => {
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('hover-effect'); 
+            }
         });
     </script>
 </body>
