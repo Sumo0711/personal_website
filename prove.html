@@ -76,6 +76,27 @@
             font-size: 1.25rem;
             color: #d4d4d4;
         }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            border: none;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+            padding: 15px;
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        .arrow:hover {
+            color: #2ea5e1;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-mono">
@@ -100,7 +121,9 @@
         </div>
         <section class="mt-8">
             <div class="carousel">
+                <button class="arrow left" onclick="prevSlide()">&#8249;</button>
                 <div class="carousel-inner" id="carousel-inner"></div>
+                <button class="arrow right" onclick="nextSlide()">&#8250;</button>
             </div>
             <div class="caption" id="caption">高中同等學歷</div>
             <div class="dots" id="dots"></div>
@@ -123,6 +146,7 @@
         const dotsContainer = document.getElementById('dots');
         const caption = document.getElementById('caption');
         let currentIndex = 0;
+        let startX = 0;
 
         function renderCarousel() {
             data.forEach((item, index) => {
@@ -152,13 +176,31 @@
             updateCarousel();
         }
 
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + data.length) % data.length;
+            updateCarousel();
+        }
+
         function currentSlide(index) {
             currentIndex = index;
             updateCarousel();
         }
 
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+        }
+
+        function handleTouchEnd(e) {
+            const endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) nextSlide();
+            if (endX - startX > 50) prevSlide();
+        }
+
+        carouselInner.addEventListener('touchstart', handleTouchStart);
+        carouselInner.addEventListener('touchend', handleTouchEnd);
+
         renderCarousel();
-        setInterval(nextSlide, 5000);
+        //setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
