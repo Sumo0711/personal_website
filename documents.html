@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蘇莫 Sumo | 相關證明</title>
+    <link rel="website icon" type="image/png" href="img/sumo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1f2937, #3c4450, #1f2937);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-mono flex flex-col items-center justify-center min-h-screen text-center p-6">
+    <nav class="absolute top-10 right-6">
+        <a href="index.html" class="text-blue-400 hover:text-blue-600">首頁</a>
+    </nav>
+    
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <h1 id="certificateTitle" class="text-lg text-white mb-4">載入證書名稱中...</h1>
+        <div id="certificateImageContainer" class="my-6">
+            <img id="certificateImage" src="" alt="證書圖片" class="max-w-full h-auto rounded-lg shadow-md"/>
+        </div>
+    </div>
+
+    <script>
+        // 解析 URL 取得 id 參數
+        const params = new URLSearchParams(window.location.search);
+        const certificateId = params.get('id'); // 取得 id 參數
+
+        // 根據 id 顯示對應的證書名稱和圖片
+        if (certificateId) {
+            // 特定證書 ID 显示自定義名稱
+            if (certificateId === 'Vocational_Training_Graduation_Certificate') {
+                document.getElementById("certificateTitle").textContent = "職訓局結訓證書";
+            } else {
+                document.getElementById("certificateTitle").textContent = `${certificateId}`;
+            }
+            document.getElementById("certificateImage").src = `img/${certificateId}.jpg`; // 根據 id 生成圖片路徑
+        } else {
+            document.getElementById("certificateTitle").textContent = "未提供有效證書ID";
+            document.getElementById("certificateImage").src = "img/default-cert.png"; // 預設圖片
+        }
+    </script>
+</body>
+</html>
