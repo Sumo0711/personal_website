@@ -33,23 +33,36 @@
     </div>
 
     <script>
-        // 解析 URL 取得 id 參數
         const params = new URLSearchParams(window.location.search);
-        const certificateId = params.get('id'); // 取得 id 參數
-
-        // 根據 id 顯示對應的證書名稱和圖片
+        const certificateId = params.get('id');
+        const certificateTitleElement = document.getElementById("certificateTitle");
+        const certificateImageElement = document.getElementById("certificateImage");
+    
         if (certificateId) {
-            // 特定證書 ID 显示自定義名稱
-            if (certificateId === 'Vocational_Training_Graduation_Certificate') {
-                document.getElementById("certificateTitle").textContent = "職訓局結訓證書";
-            } else {
-                document.getElementById("certificateTitle").textContent = `${certificateId}`;
+            switch (certificateId) {
+                case 'Vocational_Training_Graduation_Certificate':
+                    certificateTitleElement.textContent = "職訓局結訓證書";
+                    break;
+                case 'Bronze_Medal_in_Hackathon':
+                    certificateTitleElement.textContent = "教育大數據黑客松獎狀-銅牌";
+                    break;
+                case 'NEWARK_Certificate_of_Service':
+                    certificateTitleElement.textContent = "新航之舟服務學習證明";
+                    break;
+                case 'ACA_Canoe_Leader':
+                    certificateTitleElement.textContent = "ACA國際海洋平台舟領隊";
+                    break;
+                case 'Canyoning_Level_C_Instructor':
+                    certificateTitleElement.textContent = "溯溪C級指導員結訓";
+                    break;
+                default:
+                    certificateTitleElement.textContent = certificateId;
             }
-            document.getElementById("certificateImage").src = `img/${certificateId}.jpg`; // 根據 id 生成圖片路徑
+            certificateImageElement.src = `img/${certificateId}.jpg`;
         } else {
-            document.getElementById("certificateTitle").textContent = "未提供有效證書ID";
-            document.getElementById("certificateImage").src = "img/default-cert.png"; // 預設圖片
+            certificateTitleElement.textContent = "未提供有效證書ID";
+            certificateImageElement.src = "img/default-cert.png";
         }
-    </script>
+    </script>    
 </body>
 </html>
