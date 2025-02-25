@@ -26,4 +26,43 @@
     </nav>
     
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
-        <h1 id="certificateTitle" class="text-lg text-white mb-4">載入證書名稱中.
+        <h1 id="certificateTitle" class="text-lg text-white mb-4">載入證書名稱中...</h1>
+        <div id="certificateImageContainer" class="my-6">
+            <img id="certificateImage" src="" alt="證書圖片" class="max-w-full h-auto rounded-lg shadow-md"/>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const certificateId = params.get('id');
+        const certificateTitleElement = document.getElementById("certificateTitle");
+        const certificateImageElement = document.getElementById("certificateImage");
+    
+        if (certificateId) {
+            switch (certificateId) {
+                case 'Vocational_Training_Graduation_Certificate':
+                    certificateTitleElement.textContent = "職訓局結訓證書";
+                    break;
+                case 'Bronze_Medal_in_Hackathon':
+                    certificateTitleElement.textContent = "教育大數據黑客松獎狀-銅牌";
+                    break;
+                case 'NEWARK_Certificate_of_Service':
+                    certificateTitleElement.textContent = "新航之舟服務證書";
+                    break;
+                case 'ACA_Canoe_Leader':
+                    certificateTitleElement.textContent = "ACA海洋平台舟領隊證";
+                    break;
+                case 'Canyoning_Level_C_Instructor':
+                    certificateTitleElement.textContent = "C級溯溪安全指導員研習證明";
+                    break;
+                default:
+                    certificateTitleElement.textContent = certificateId;
+            }
+            certificateImageElement.src = `img/${certificateId}.jpg`;
+        } else {
+            certificateTitleElement.textContent = "未提供有效證書ID";
+            certificateImageElement.src = "img/default-cert.png";
+        }
+    </script>    
+</body>
+</html>
