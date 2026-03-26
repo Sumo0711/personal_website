@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蘇莫 Sumo | 我的故事</title>
+    <link rel="website icon" type="image/png" href="img/sumo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1f2937, #3c4450, #1f2937);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glass-panel {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-mono">
+    
+    <header class="p-6 flex justify-between items-center">
+        <h1 class="text-4xl">我的故事</h1>
+        <nav class="mt-4 flex space-x-4">
+            <a href="projects.html" class="text-blue-400 hover:text-blue-600">作品</a>
+            <a href="index.html" class="text-blue-400 hover:text-blue-600">首頁</a>
+        </nav>
+    </header>
+
+    <main class="p-6 max-w-4xl mx-auto mt-12 mb-16">
+        
+        <section class="glass-panel p-8 md:p-12 rounded-3xl shadow-2xl mb-8">
+            <h2 class="text-3xl font-bold mb-8 border-b border-blue-500 pb-4 inline-block">關於蘇莫的故事</h2>
+            
+            <article class="prose prose-invert max-w-none text-gray-200 leading-loose text-lg tracking-wide">
+                <p class="mb-6">
+                    我是蘇莫 Sumo。熱衷於資管技術與戶外極限探索的斜槓 Engineer。
+                    自 2015 年小六那場成人禮單車環島開始，挑戰便成為我生活的養分。我曾獨自與同伴騎行橫跨歐洲多國，並取得 C級溯溪安全指導員與 ACA 獨木舟領隊資格。
+                </p>
+                <p class="mb-6">
+                    在專業上，我專注於網路資安與雲端架構，持有 RHCE 與 CCNA 證照，積極參與 Web3 與大數據黑客松，致力於解決複雜系統問題。
+                </p>
+                <p class="mb-6">
+                    對我來說，斜槓不只是身分，更是將嚴謹的運維思維應用於冒險決策中。未來，我希望能將技術深度與心理素質結合，創造更多數位領域的可能性。
+                </p>
+                <p class="italic text-gray-400">
+                    No need to compare with others, just be 1% better than yourself yesterday.
+                </p>
+            </article>
+        </section>
+
+        <section class="max-w-4xl mx-auto mb-4 mt-8">
+            <div class="video-section">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-800 transition-transform duration-500 hover:scale-[1.01]" style="padding-bottom: 56.25%; height: 0;">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        src="https://www.youtube.com/embed/5rS2MupSwug" 
+                        title="Sumo's Personal Introduction" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="p-6 text-center">
+        &copy; 2024 蘇莫。保留所有權利。
+    </footer>
+</body>
+</html>
